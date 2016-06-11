@@ -17,6 +17,36 @@ var Menu = function(myFabric, menuLink, menu) {
     document.querySelector("main").addEventListener("dragenter", this._stopEvent.bind(this));
     document.querySelector("main").addEventListener("dragover", this._stopEvent.bind(this));
     document.querySelector("main").addEventListener("drop", this._mainDrop.bind(this));
+    this._pushHistoryBind = function () {
+        this._pushHistory();
+    }.bind(this);
+    window.addEventListener('popstate', function(e) {
+            this._popHistory(e)
+        }.bind(this));
+    this._registerHistory();
+}
+
+Menu.prototype._registerHistory = function(e) {
+    this._myFabric._canvas.renderAll();
+    this._myFabric._canvas.on('object:added', this._pushHistoryBind);
+    this._myFabric._canvas.on('object:modified', this._pushHistoryBind);
+}
+
+Menu.prototype._deregisterHistory = function(e) {
+    this._myFabric._canvas.off('object:added', this._pushHistoryBind);
+    this._myFabric._canvas.off('object:modified', this._pushHistoryBind);
+}
+
+Menu.prototype._pushHistory = function(e) {
+    var json = JSON.stringify(this._myFabric._canvas);
+    console.log(json);
+    window.history.pushState({canvasJSON:json}, "", "");
+}
+
+Menu.prototype._popHistory = function(e) {
+    this._deregisterHistory();
+    var json = e.state.canvasJSON;
+    this._myFabric._canvas.loadFromJSON(json, this._registerHistory.bind(this));
 }
 
 Menu.prototype._stopEvent = function(e) {
