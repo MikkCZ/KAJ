@@ -60,6 +60,21 @@ MyFabric.prototype.addImage = function(url) {
     }.bind(this));
 }
 
+MyFabric.prototype.addImagesToCanvas = function(files) {
+    var callback = function(e) {
+        this.addImage(e.target.result);
+    }.bind(this);
+    for(var i = 0; i<files.length; i++) {
+        var imageType = /^image\//;
+        if (!imageType.test(files[i].type)) {
+            continue;
+        }
+        var fr = new FileReader();
+        fr.addEventListener("load", callback);
+        fr.readAsDataURL(files[i]);
+    }
+}
+
 /*
 Delete currently selected object from canvas
 */
@@ -102,4 +117,24 @@ MyFabric.prototype.getCroppedDataURL = function() {
     });
     tmpCanvas.clear();
     return dataURL;
+}
+
+MyFabric.prototype.addCanvasListener = function(event, callback) {
+    this._canvas.on(event, callback);
+}
+
+MyFabric.prototype.removeCanvasListener = function(event, callback) {
+    this._canvas.off(event, callback);
+}
+
+MyFabric.prototype.renderAll = function() {
+    this._canvas.renderAll();
+}
+
+MyFabric.prototype.toJSON = function() {
+    return JSON.stringify(this._canvas);
+}
+
+MyFabric.prototype.loadFromJSON = function(json, callback) {
+    this._canvas.loadFromJSON(json, callback);
 }

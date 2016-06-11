@@ -6,59 +6,19 @@ Menu object constructor (DOM is already in HTML)
 */
 var Menu = function(myFabric, menuLink, menu) {
     this._myFabric = myFabric;
+    
     this._menuLink = document.querySelector(menuLink);
     this._menuLink.addEventListener("click", this.toggleNav.bind(this));
+    
     this._menu = document.querySelector(menu);
+    
     this._openedWithClick = false;
     this._openedWithHover = false;
+    
     document.querySelector("#background-image").addEventListener("change", this._loadBackgroundImage.bind(this));
     document.querySelector("#add-image").addEventListener("change", this._addImageToCanvas.bind(this));
     document.querySelector("#add-text").addEventListener("click", this._addTextToCanvas.bind(this));
     document.querySelector("#save").addEventListener("click", this._saveToFile.bind(this));
-    document.querySelector("main").addEventListener("dragenter", this._stopEvent.bind(this));
-    document.querySelector("main").addEventListener("dragover", this._stopEvent.bind(this));
-    document.querySelector("main").addEventListener("drop", this._mainDrop.bind(this));
-    this._pushHistoryBind = function () {
-        this._pushHistory();
-    }.bind(this);
-    window.addEventListener('popstate', function(e) {
-            this._popHistory(e)
-        }.bind(this));
-    this._registerHistory();
-}
-
-Menu.prototype._registerHistory = function(e) {
-    this._myFabric._canvas.renderAll();
-    this._myFabric._canvas.on('object:added', this._pushHistoryBind);
-    this._myFabric._canvas.on('object:modified', this._pushHistoryBind);
-}
-
-Menu.prototype._deregisterHistory = function(e) {
-    this._myFabric._canvas.off('object:added', this._pushHistoryBind);
-    this._myFabric._canvas.off('object:modified', this._pushHistoryBind);
-}
-
-Menu.prototype._pushHistory = function(e) {
-    var json = JSON.stringify(this._myFabric._canvas);
-    console.log(json);
-    window.history.pushState({canvasJSON:json}, "", "");
-}
-
-Menu.prototype._popHistory = function(e) {
-    this._deregisterHistory();
-    var json = e.state.canvasJSON;
-    this._myFabric._canvas.loadFromJSON(json, this._registerHistory.bind(this));
-}
-
-Menu.prototype._stopEvent = function(e) {
-    e.stopPropagation();
-    e.preventDefault();
-}
-
-Menu.prototype._mainDrop = function(e) {
-    e.stopPropagation();
-    e.preventDefault();
-    this._addImagesToCanvas(e.dataTransfer.files);
 }
 
 /*
@@ -123,22 +83,7 @@ Load images and add it to canvas
 @param e - event
 */
 Menu.prototype._addImageToCanvas = function(e) {
-    this._addImagesToCanvas(e.target.files);
-}
-
-Menu.prototype._addImagesToCanvas = function(files) {
-    var callback = function(e) {
-        this._myFabric.addImage(e.target.result);
-    }.bind(this);
-    for(var i = 0; i<files.length; i++) {
-        var imageType = /^image\//;
-        if (!imageType.test(files[i].type)) {
-            continue;
-        }
-        var fr = new FileReader();
-        fr.addEventListener("load", callback);
-        fr.readAsDataURL(files[i]);
-    }
+    this._myFabric.addImagesToCanvas(e.target.files);
 }
 
 Menu.prototype._addTextToCanvas = function() {
