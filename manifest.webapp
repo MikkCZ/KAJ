@@ -1,0 +1,9 @@
+{
+  "name": "KAJ",
+  "description": "stankmic",
+  "launch_path": "/index.html",
+  "developer": {
+    "name": "Michal Stanke",
+    "url": "http://michal.stanke.cz/KAJ"
+  }
+}
