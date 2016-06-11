@@ -64,6 +64,7 @@ header {
      color: lightgrey;
 }
 
+/* Menu lists */
 #menu ul {
     padding-top: 1em;
     padding-left: 0;
@@ -72,26 +73,26 @@ header {
     border-top: solid lightgrey 1px;
 }
 
+/* Menu last list border */
 #menu ul:last-child {
     padding-bottom: 1em;
     border-bottom: solid lightgrey 1px;
 }
 
-main {
-    box-shadow: 0 0 .2em gray;
-}
-
+/* Main space for editor */
 main {
     position: absolute;
-    margin-top: 1em;
     left: 5%;
+    margin-top: 1em;
     width: 90%;
     height: 90%;
+    box-shadow: 0 0 .2em gray;
 }
 
 @media(max-height: 600px) {
     main {
         margin-top: inherit;
+        margin-bottom: .5em;
     }
 }
 
@@ -102,4 +103,30 @@ footer {
     font-size: .5em;
     text-align: right;
     padding: 0;
+}
+
+/* Show message to landscape the device */
+@media(orientation: portrait) {
+    main * {
+        display: none;
+    }
+    main::before {
+        content: "Please rotate your device.";
+        display: inline-block;
+        padding: 1em;
+        text-align: center;
+    }
+}
+
+/* Show message for very small screens */
+@media(max-height: 400px), (max-width: 320px) {
+    main * {
+        display: none;
+    }
+    main::before {
+        content: "Your device has too small screen to run this editor. Sorry. :-(";
+        display: inline-block;
+        padding: 1em;
+        text-align: center;
+    }
 }
