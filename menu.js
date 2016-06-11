@@ -1,3 +1,6 @@
+/*
+Menu object constructor (DOM is already in HTML)
+*/
 var Menu = function(menuLink, menu) {
     this._menuLink = document.querySelector("#menu-link");
     this._menuLink.addEventListener("click", this.toggleNav.bind(this));
@@ -6,6 +9,9 @@ var Menu = function(menuLink, menu) {
     this._openedWithHover = false;
 }
 
+/*
+Open navigation menu
+*/
 Menu.prototype._openNav = function(e) {
     if (e.target == this._menuLink) {
         this._openedWithClick = true;
@@ -16,6 +22,9 @@ Menu.prototype._openNav = function(e) {
     this._menu.classList.add("opened");
 }
 
+/*
+Close navigation menu
+*/
 Menu.prototype._closeNav = function(e) {
     this._openedWithClick = false;
     this._openedWithHover = false;
@@ -23,6 +32,9 @@ Menu.prototype._closeNav = function(e) {
     this._menu.classList.remove("opened");
 }
 
+/*
+Open/close navigation menu
+*/
 Menu.prototype.toggleNav = function(e) {
     if (e.target == this._menuLink) {
         if (this._openedWithClick || this._openedWithHover) {
@@ -39,6 +51,9 @@ Menu.prototype.toggleNav = function(e) {
     }
 }
 
+/*
+Initialize menu object after document is loaded
+*/
 document.addEventListener("DOMContentLoaded", function(event) {
     var menu = new Menu();
 });
