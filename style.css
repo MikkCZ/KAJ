@@ -63,6 +63,10 @@ header #local {
     -webkit-transition: all .5s;
 }
 
+#menu-link, #menu ul * {
+    cursor: pointer;
+}
+
 #menu {
     position: absolute;
     left: -11em;
@@ -91,6 +95,10 @@ header #local {
 #menu ul:last-child {
     padding-bottom: 1em;
     border-bottom: solid lightgrey 1px;
+}
+
+#menu input[type="file"] {
+    display: none;
 }
 
 /* Main space for editor */
