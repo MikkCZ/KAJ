@@ -14,6 +14,20 @@ var Menu = function(myFabric, menuLink, menu) {
     document.querySelector("#background-image").addEventListener("change", this._loadBackgroundImage.bind(this));
     document.querySelector("#add-image").addEventListener("change", this._addImageToCanvas.bind(this));
     document.querySelector("#save").addEventListener("click", this._saveToFile.bind(this));
+    document.querySelector("main").addEventListener("dragenter", this._stopEvent.bind(this));
+    document.querySelector("main").addEventListener("dragover", this._stopEvent.bind(this));
+    document.querySelector("main").addEventListener("drop", this._mainDrop.bind(this));
+}
+
+Menu.prototype._stopEvent = function(e) {
+    e.stopPropagation();
+    e.preventDefault();
+}
+
+Menu.prototype._mainDrop = function(e) {
+    e.stopPropagation();
+    e.preventDefault();
+    this._addImagesToCanvas(e.dataTransfer.files);
 }
 
 /*
@@ -74,15 +88,26 @@ Menu.prototype._loadBackgroundImage = function(e) {
 }
 
 /*
-Load image and add it to canvas
+Load images and add it to canvas
 @param e - event
 */
 Menu.prototype._addImageToCanvas = function(e) {
-    var fr = new FileReader();
-    fr.addEventListener("load", function(e) {
+    this._addImagesToCanvas(e.target.files);
+}
+
+Menu.prototype._addImagesToCanvas = function(files) {
+    var callback = function(e) {
         this._myFabric.addImage(e.target.result);
-    }.bind(this));
-    fr.readAsDataURL(e.target.files[0]);
+    }.bind(this);
+    for(var i = 0; i<files.length; i++) {
+        var imageType = /^image\//;
+        if (!imageType.test(files[i].type)) {
+            continue;
+        }
+        var fr = new FileReader();
+        fr.addEventListener("load", callback);
+        fr.readAsDataURL(files[i]);
+    }
 }
 
 /*
