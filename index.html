@@ -7,6 +7,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/1.6.2/fabric.min.js"></script>
     <script src="./js/menu.js"></script>
     <script src="./js/myfabric.js"></script>
+    <script src="./js/main.js"></script>
 </head>
 <body>
     <header>
@@ -14,22 +15,28 @@
     </header>
     <nav id="menu">
         <ul>
-            <li>Color</li>
             <li>Background</li>
+            <li>
+                <label for="background-image">Background image:</label>
+                <input type="file" id="background-image">
+            </li>
         </ul>
         <ul>
-            <li>Pencil</li>
             <li>Line</li>
             <li>Arrow</li>
+            <li>Text</li>
+            <li>Rectangle</li>
+            <li>Elipse</li>
+            <li>
+                <label for="add-image">Add image:</label>
+                <input type="file" id="add-image">
+            </li>
         </ul>
         <ul>
-            <li>Rotate</li>
             <li>Crop</li>
-            <li>Resize</li>
         </ul>
         <ul>
-            <li>Load image</li>
-            <li>Save image</li>
+            <li><button id="save">Save</button></li>
         </ul>
     </nav>
     <main>
