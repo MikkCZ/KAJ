@@ -76,6 +76,16 @@ header #local {
     cursor: pointer;
 }
 
+#langs {
+    float: right;
+    margin-left: 1em;
+    padding: 0;
+}
+
+#langs a img {
+    width: 1.5em;
+}
+
 #menu {
     position: absolute;
     left: -11em;

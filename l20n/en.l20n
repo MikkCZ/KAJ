@@ -1,0 +1,12 @@
+<menu "Menu">
+<background "Background">
+<background_image "Background image">
+<line "Line">
+<arrow "Arrow">
+<text "Text">
+<rectangle "Rectangle">
+<elipse "Elipse">
+<add_image "Add image">
+<crop "Crop">
+<save "Save as is">
+<save_cropped "Save cropped">

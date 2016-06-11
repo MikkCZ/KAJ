@@ -5,6 +5,11 @@
     <title>KAJ - stankmic</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=yes">
     <link rel="stylesheet" href="./style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/l20n/1.0.2/l20n.min.js"></script>
+    <script src="./l20n/l20n-script.js"></script>
+    <link rel="alternate" hreflang="en" href="#en">
+	<link rel="alternate" hreflang="cs" href="#cs">
+    <link rel="localization" href="l20n/manifest.json">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/1.6.2/fabric.min.js"></script>
     <script src="./js/menu.js"></script>
     <script src="./js/draganddrop.js"></script>
@@ -14,33 +19,37 @@
 </head>
 <body>
     <header>
-        <a id="menu-link">Menu</a>
+        <a id="menu-link" data-l10n-id="menu">Menu</a>
+        <span id="langs">
+            <a href="#en" title="English"><img src="./images/en.jpg" alt="English"></a>
+            <a href="#cs" title="Česky"><img src="./images/cs.jpg" alt="Česky"></a>
+        </span>
     </header>
     <nav id="menu">
         <ul>
-            <li>Background</li>
+            <li data-l10n-id="background">Background</li>
             <li>
-                <label for="background-image">Background image</label>
+                <label for="background-image" data-l10n-id="background_image">Background image</label>
                 <input type="file" id="background-image" accept="image/*" multiple="multiple">
             </li>
         </ul>
         <ul>
-            <li>Line</li>
-            <li>Arrow</li>
-            <li id="add-text">Text</li>
-            <li>Rectangle</li>
-            <li>Elipse</li>
+            <li data-l10n-id="line">Line</li>
+            <li data-l10n-id="arrow">Arrow</li>
+            <li id="add-text" data-l10n-id="text">Text</li>
+            <li data-l10n-id="rectangle">Rectangle</li>
+            <li data-l10n-id="elipse">Elipse</li>
             <li>
-                <label for="add-image">Add image</label>
+                <label for="add-image" data-l10n-id="add_image">Add image</label>
                 <input type="file" id="add-image" accept="image/*" multiple="multiple">
             </li>
         </ul>
         <ul>
-            <li>Crop</li>
+            <li data-l10n-id="crop">Crop</li>
         </ul>
         <ul>
-            <li><button id="save">Save as is</button></li>
-            <li><button id="save-cropped">Save cropped</button></li>
+            <li><button id="save" data-l10n-id="save">Save as is</button></li>
+            <li><button id="save-cropped" data-l10n-id="save_cropped">Save cropped</button></li>
         </ul>
     </nav>
     <main>

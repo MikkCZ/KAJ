@@ -1,0 +1,12 @@
+<menu "Menu">
+<background "Pozadí">
+<background_image "Nahrát pozadí">
+<line "Čára">
+<arrow "Šipka">
+<text "Text">
+<rectangle "Obdélník">
+<elipse "Elipsa">
+<add_image "Nahrát obrázek">
+<crop "Ořez">
+<save "Uložit">
+<save_cropped "Uložit aut. ořez">
