@@ -33,7 +33,7 @@ header {
 }
 
 /* Rotate hambuger menu when menu opened */
-#menu-link.opened::before {
+#menu-link.opened::before, header:hover #menu-link::before {
     transform: rotate(0);
     -o-transform: rotate(0);
     -ms-transform: rotate(0);
@@ -58,7 +58,8 @@ header {
     padding-top: 1em;
 }
 
-#menu.opened {
+/* Open menu when class .opened added or mouseover */
+#menu.opened, header:hover + #menu, #menu:hover {
      left: 0;
      color: lightgrey;
 }
