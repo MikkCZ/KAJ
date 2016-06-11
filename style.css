@@ -66,6 +66,24 @@ header, #menu, footer {
     border-bottom: solid lightgrey 1px;
 }
 
+main {
+    box-shadow: 0 0 .2em gray;
+}
+
+main {
+    position: absolute;
+    margin-top: 1em;
+    left: 5%;
+    width: 90%;
+    height: 90%;
+}
+
+@media(max-height: 600px) {
+    main {
+        margin-top: inherit;
+    }
+}
+
 footer {
     position: fixed;
     bottom: 0;
