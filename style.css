@@ -11,6 +11,15 @@ body {
     background-color: lightgrey;
 }
 
+a:link {
+    color: lightgrey;
+    text-decoration: none;
+}
+
+a:hover {
+    color: white;
+}
+
 #local {
     float: right;
 }
@@ -130,6 +139,14 @@ footer {
     font-size: .5em;
     text-align: right;
     padding: 0;
+}
+
+[itemprop="email"]::before {
+    content: "<";
+}
+
+[itemprop="email"]::after {
+    content: ">";
 }
 
 /* Show message to landscape the device */
