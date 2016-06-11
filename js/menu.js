@@ -23,6 +23,7 @@ kaj.Menu = function(myFabric, menuLink, menu) {
     document.querySelector("#add-image").addEventListener("change", this._addImageToCanvas.bind(this));
     document.querySelector("#add-text").addEventListener("click", this._addTextToCanvas.bind(this));
     document.querySelector("#save").addEventListener("click", this._saveToFile.bind(this));
+    document.querySelector("#save-cropped").addEventListener("click", this._saveCroppedToFile.bind(this));
 }
 
 /*
@@ -99,6 +100,20 @@ Save canvas content to file
 @param e - event
 */
 kaj.Menu.prototype._saveToFile = function(e) {
+    this._myFabric.renderAll();
+    var a = document.createElement("a");
+    a.setAttribute("download", "KAJ-stankmic.png");
+    a.setAttribute("href", document.querySelector("#fabric").toDataURL());
+    this._menu.appendChild(a);
+    a.click();
+    this._menu.removeChild(a);
+}
+
+/*
+Save canvas content to file
+@param e - event
+*/
+kaj.Menu.prototype._saveCroppedToFile = function(e) {
     var a = document.createElement("a");
     a.setAttribute("download", "KAJ-stankmic.png");
     a.setAttribute("href", this._myFabric.getCroppedDataURL());
