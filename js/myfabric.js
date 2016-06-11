@@ -1,8 +1,12 @@
+if (typeof kaj === "undefined") {
+    var kaj = {};
+}
+
 /*
 MyFabric object constructor
 @param id - canvas id
 */
-var MyFabric = function(id) {
+kaj.MyFabric = function(id) {
     this._canvas = new fabric.Canvas(id);
     this._main = document.querySelector("main");
     this._resizeCanvas();
@@ -10,14 +14,14 @@ var MyFabric = function(id) {
     window.addEventListener("keyup", this._keyup.bind(this));
 }
 
-MyFabric.prototype.addText = function(text) {
+kaj.MyFabric.prototype.addText = function(text) {
     this._canvas.add(new fabric.IText(text));
 }
 
 /*
 Resize canvas on full <main> size
 */
-MyFabric.prototype._resizeCanvas = function() {
+kaj.MyFabric.prototype._resizeCanvas = function() {
     this._canvas.setHeight(this._main.offsetHeight);
     this._canvas.setWidth(this._main.offsetWidth);
     this._canvas.renderAll();
@@ -27,7 +31,7 @@ MyFabric.prototype._resizeCanvas = function() {
 Handle key up event
 @param e - event
 */
-MyFabric.prototype._keyup = function(e) {
+kaj.MyFabric.prototype._keyup = function(e) {
     const del = 46;
     var key = e.keyCode ? e.keyCode : e.which;
     switch (key) {
@@ -41,7 +45,7 @@ MyFabric.prototype._keyup = function(e) {
 Set canvas background image
 @param url - image url (can be data url)
 */
-MyFabric.prototype.setBackgroundImage = function(url) {
+kaj.MyFabric.prototype.setBackgroundImage = function(url) {
     fabric.Image.fromURL(url);
     fabric.Image.fromURL(url, function(img) {
         this._canvas.setBackgroundImage(img);
@@ -53,14 +57,14 @@ MyFabric.prototype.setBackgroundImage = function(url) {
 Add image to canvas
 @param url - image url (can be data url)
 */
-MyFabric.prototype.addImage = function(url) {
+kaj.MyFabric.prototype.addImage = function(url) {
     fabric.Image.fromURL(url);
     fabric.Image.fromURL(url, function(img) {
         this._canvas.add(img);
     }.bind(this));
 }
 
-MyFabric.prototype.addImagesToCanvas = function(files) {
+kaj.MyFabric.prototype.addImagesToCanvas = function(files) {
     var callback = function(e) {
         this.addImage(e.target.result);
     }.bind(this);
@@ -78,7 +82,7 @@ MyFabric.prototype.addImagesToCanvas = function(files) {
 /*
 Delete currently selected object from canvas
 */
-MyFabric.prototype._deleteSelected = function() {
+kaj.MyFabric.prototype._deleteSelected = function() {
     this._canvas.getActiveObject().remove();
 }
 
@@ -86,7 +90,7 @@ MyFabric.prototype._deleteSelected = function() {
 Get current canvas content as data URL
 @return base64 png image from the current canvas content
 */
-MyFabric.prototype.getDataURL = function() {
+kaj.MyFabric.prototype.getDataURL = function() {
     this._canvas.deactivateAll();
     this._canvas.renderAll();
     return this._canvas.toDataURL();
@@ -96,7 +100,7 @@ MyFabric.prototype.getDataURL = function() {
 Get current canvas cropped content as data URL
 @return base64 png image from the current canvas content
 */
-MyFabric.prototype.getCroppedDataURL = function() {
+kaj.MyFabric.prototype.getCroppedDataURL = function() {
     var tmpCanvas = new fabric.Canvas();
     tmpCanvas.setHeight(this._canvas.getHeight());
     tmpCanvas.setWidth(this._canvas.getWidth());
@@ -119,22 +123,22 @@ MyFabric.prototype.getCroppedDataURL = function() {
     return dataURL;
 }
 
-MyFabric.prototype.addCanvasListener = function(event, callback) {
+kaj.MyFabric.prototype.addCanvasListener = function(event, callback) {
     this._canvas.on(event, callback);
 }
 
-MyFabric.prototype.removeCanvasListener = function(event, callback) {
+kaj.MyFabric.prototype.removeCanvasListener = function(event, callback) {
     this._canvas.off(event, callback);
 }
 
-MyFabric.prototype.renderAll = function() {
+kaj.MyFabric.prototype.renderAll = function() {
     this._canvas.renderAll();
 }
 
-MyFabric.prototype.toJSON = function() {
+kaj.MyFabric.prototype.toJSON = function() {
     return JSON.stringify(this._canvas);
 }
 
-MyFabric.prototype.loadFromJSON = function(json, callback) {
+kaj.MyFabric.prototype.loadFromJSON = function(json, callback) {
     this._canvas.loadFromJSON(json, callback);
 }

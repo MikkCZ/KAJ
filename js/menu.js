@@ -1,10 +1,14 @@
+if (typeof kaj === "undefined") {
+    var kaj = {};
+}
+
 /*
 Menu object constructor (DOM is already in HTML)
 @param myFabric - MyFabric instance
 @param menuLink - menu link selector
 @param menu - menu selector
 */
-var Menu = function(myFabric, menuLink, menu) {
+kaj.Menu = function(myFabric, menuLink, menu) {
     this._myFabric = myFabric;
     
     this._menuLink = document.querySelector(menuLink);
@@ -25,7 +29,7 @@ var Menu = function(myFabric, menuLink, menu) {
 Open navigation menu
 @param e - event
 */
-Menu.prototype._openNav = function(e) {
+kaj.Menu.prototype._openNav = function(e) {
     if (e.target == this._menuLink) {
         this._openedWithClick = true;
     } else if (e.target == this._menu) {
@@ -39,7 +43,7 @@ Menu.prototype._openNav = function(e) {
 Close navigation menu
 @param e - event
 */
-Menu.prototype._closeNav = function(e) {
+kaj.Menu.prototype._closeNav = function(e) {
     this._openedWithClick = false;
     this._openedWithHover = false;
     this._menuLink.classList.remove("opened");
@@ -50,7 +54,7 @@ Menu.prototype._closeNav = function(e) {
 Open/close navigation menu
 @param e - event
 */
-Menu.prototype.toggleNav = function(e) {
+kaj.Menu.prototype.toggleNav = function(e) {
     if (e.target == this._menuLink) {
         if (this._openedWithClick || this._openedWithHover) {
             this._closeNav(e);
@@ -70,7 +74,7 @@ Menu.prototype.toggleNav = function(e) {
 Load image on canvas background
 @param e - event
 */
-Menu.prototype._loadBackgroundImage = function(e) {
+kaj.Menu.prototype._loadBackgroundImage = function(e) {
     var fr = new FileReader();
     fr.addEventListener("load", function(e) {
         this._myFabric.setBackgroundImage(e.target.result);
@@ -82,11 +86,11 @@ Menu.prototype._loadBackgroundImage = function(e) {
 Load images and add it to canvas
 @param e - event
 */
-Menu.prototype._addImageToCanvas = function(e) {
+kaj.Menu.prototype._addImageToCanvas = function(e) {
     this._myFabric.addImagesToCanvas(e.target.files);
 }
 
-Menu.prototype._addTextToCanvas = function() {
+kaj.Menu.prototype._addTextToCanvas = function() {
     this._myFabric.addText("Click to edit");
 }
 
@@ -94,7 +98,7 @@ Menu.prototype._addTextToCanvas = function() {
 Save canvas content to file
 @param e - event
 */
-Menu.prototype._saveToFile = function(e) {
+kaj.Menu.prototype._saveToFile = function(e) {
     var a = document.createElement("a");
     a.setAttribute("download", "KAJ-stankmic.png");
     a.setAttribute("href", this._myFabric.getCroppedDataURL());
