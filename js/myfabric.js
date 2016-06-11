@@ -10,12 +10,8 @@ var MyFabric = function(id) {
     window.addEventListener("keyup", this._keyup.bind(this));
 }
 
-/*
-Test function what Fabric can do
-*/
-MyFabric.prototype.test = function() {
-    var hi = new fabric.Text("hi");
-    this._canvas.add(hi);
+MyFabric.prototype.addText = function(text) {
+    this._canvas.add(new fabric.IText(text));
 }
 
 /*

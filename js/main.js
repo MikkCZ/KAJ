@@ -3,7 +3,6 @@ Initialize menu object after document is loaded
 */
 document.addEventListener("DOMContentLoaded", function(event) {
     var myFabric = new MyFabric('fabric');
-    myFabric.test();
     var menu = new Menu(myFabric, "#menu-link", "#menu");
     if (window.location.protocol == "file:") {
         var runningLocal = document.createElement("span");

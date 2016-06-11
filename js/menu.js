@@ -13,6 +13,7 @@ var Menu = function(myFabric, menuLink, menu) {
     this._openedWithHover = false;
     document.querySelector("#background-image").addEventListener("change", this._loadBackgroundImage.bind(this));
     document.querySelector("#add-image").addEventListener("change", this._addImageToCanvas.bind(this));
+    document.querySelector("#add-text").addEventListener("click", this._addTextToCanvas.bind(this));
     document.querySelector("#save").addEventListener("click", this._saveToFile.bind(this));
     document.querySelector("main").addEventListener("dragenter", this._stopEvent.bind(this));
     document.querySelector("main").addEventListener("dragover", this._stopEvent.bind(this));
@@ -138,6 +139,10 @@ Menu.prototype._addImagesToCanvas = function(files) {
         fr.addEventListener("load", callback);
         fr.readAsDataURL(files[i]);
     }
+}
+
+Menu.prototype._addTextToCanvas = function() {
+    this._myFabric.addText("Click to edit");
 }
 
 /*
