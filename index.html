@@ -5,6 +5,9 @@
     <title>KAJ - stankmic</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=yes">
     <link rel="stylesheet" href="./style.css">
+    <!-- input color polyfill -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jscolor/2.0.4/jscolor.min.js"></script>
+    <!-- / -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/l20n/1.0.2/l20n.min.js"></script>
     <script src="./l20n/l20n-script.js"></script>
     <link rel="alternate" hreflang="en" href="#en">
@@ -29,7 +32,7 @@
         <ul>
             <li>
                 <label for="background" data-l10n-id="background">Background</label>
-                <input type="color" id="background" value="#ffffff">
+                <input type="color" id="background" value="#ffffff" class="jscolor">
             </li>
         </ul>
         <ul>
@@ -39,7 +42,7 @@
             </li>
             <li>
                 <label for="color" data-l10n-id="color">Color</label>
-                <input type="color" id="color" value="#000000">
+                <input type="color" id="color" value="#000000" class="jscolor">
             </li>
             <li>
                 <label for="brush-mode" data-l10n-id="brush_mode">Brush mode</label>

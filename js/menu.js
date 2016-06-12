@@ -94,7 +94,7 @@ Change canvas background color.
 @param e - event
 */
 kaj.Menu.prototype._setBackgroundColor = function(e) {
-    this._myFabric.setBackgroundColor(e.target.value);
+    this._myFabric.setBackgroundColor(this._sanitizeColor(e.target.value));
 }
 
 /*
@@ -123,7 +123,7 @@ Change color for new canvas objects.
 @param e - event
 */
 kaj.Menu.prototype._setColor = function(e) {
-    this._color = e.target.value;
+    this._color = this._sanitizeColor(e.target.value);
     this._myFabric.setBrushModeColor(this._color);
 }
 
@@ -217,4 +217,17 @@ Save canvas content as SVG.
 kaj.Menu.prototype._saveAsSVG = function() {
     var base64SVG = window.btoa(this._myFabric.toSVG());
     this._offerSave("KAJ-stankmic.svg", "data:image/svg+xml;base64,"+base64SVG);
+}
+
+/*
+Helper function to sanitize color from input color polyfill.
+@param color - color to sanitize
+@return sanitized color
+*/
+kaj.Menu.prototype._sanitizeColor = function(color) {
+    if(color.lastIndexOf("#", 0) !== 0) {
+        return "#"+color;
+    } else {
+        return color;
+    }
 }

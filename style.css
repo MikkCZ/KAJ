@@ -132,10 +132,12 @@ header #langs a img {
 }
 
 #menu input[type="number"] {
+    max-width: 3em;
     max-height: 1.3em;
 }
 
 #menu input[type="color"] {
+    max-width: 3.5em;
     max-height: 1.5em;
     margin: 0;
 }
