@@ -6,7 +6,7 @@
 <arrow "Arrow">
 <text "Text">
 <rectangle "Rectangle">
-<elipse "Elipse">
+<ellipse "Ellipse">
 <add_image "Add image">
 <crop "Crop">
 <save "Save as is">

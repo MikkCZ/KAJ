@@ -6,7 +6,7 @@
 <arrow "Šipka">
 <text "Text">
 <rectangle "Obdélník">
-<elipse "Elipsa">
+<ellipse "Elipsa">
 <add_image "Nahrát obrázek">
 <crop "Ořez">
 <save "Uložit">

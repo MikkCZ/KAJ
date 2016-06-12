@@ -78,6 +78,21 @@ kaj.MyFabric.prototype.addRectangle = function() {
     this._canvas.add(rect);
 }
 
+kaj.MyFabric.prototype.addEllipse = function() {
+    var ellipse = new fabric.Ellipse(
+        {
+            left: 50,
+            top: 50,
+            rx: 250,
+            ry: 100,
+            fill: "transparent",
+            stroke: this._color,
+            strokeWidth: 5
+        }
+    );
+    this._canvas.add(ellipse);
+}
+
 /*
 Resize canvas on full <main> size
 */
