@@ -128,7 +128,7 @@ kaj.Menu.prototype._setColor = function(e) {
 Add new line to canvas.
 */
 kaj.Menu.prototype._addLineToCanvas = function() {
-    this._myFabric.addLine(this._color);
+    this._myFabric.addLine(this._strokeWidth, this._color);
 }
 
 /*

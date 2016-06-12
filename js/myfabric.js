@@ -105,15 +105,17 @@ kaj.MyFabric.prototype.setBackgroundImage = function(url) {
 
 /*
 Add new line.
+@param strokeWidth - line stroke width
 @param color - line color
 */
-kaj.MyFabric.prototype.addLine = function(color) {
+kaj.MyFabric.prototype.addLine = function(strokeWidth ,color) {
     var line = new fabric.Line(
         [50, 50, 250, 50],
         {
             padding: 5,
             left: 50,
             top: 50,
+            strokeWidth: strokeWidth,
             stroke: color,
         }
     );
