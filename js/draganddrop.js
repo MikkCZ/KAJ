@@ -7,6 +7,7 @@ kaj.DragAndDrop = function(main, myFabric) {
     this._main.addEventListener("dragenter", this._dragenter.bind(this));
     this._main.addEventListener("dragover", this._dragover.bind(this));
     this._main.addEventListener("drop", this._drop.bind(this));
+
     this._myFabric = myFabric;
 }
 
