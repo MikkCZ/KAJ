@@ -22,6 +22,47 @@ kaj.MyFabric.prototype.addText = function(text) {
     this._canvas.add(iText);
 }
 
+kaj.MyFabric.prototype.addLine = function() {
+    var line = new fabric.Line(
+        [50, 50, 250, 50],
+        {
+            padding: 5,
+            left: 50,
+            top: 50,
+            stroke: this._color
+        }
+    );
+    this._canvas.add(line);
+}
+
+kaj.MyFabric.prototype.addArrow = function() {
+    var line = new fabric.Line(
+        [50, 50, 100, 50],
+        {
+            padding: 5,
+            left: 50,
+            top: 50,
+            stroke: this._color,
+            originY: "center",
+            strokeWidth: 10
+        }
+    );
+    var triangle = new fabric.Triangle(
+        {
+            angle: 90,
+            fill: this._color,
+            left: line.x2-line.x1+line.left,
+            top: line.top,
+            height: line.strokeWidth*2,
+            width: line.strokeWidth*2,
+            originX: "center",
+            originY: "center"
+        }
+    );
+    this._canvas.add(line);
+    this._canvas.add(triangle);
+}
+
 /*
 Resize canvas on full <main> size
 */
