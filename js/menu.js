@@ -31,6 +31,7 @@ kaj.Menu.prototype._addMenuListeners = function() {
 
     document.querySelector("#stroke-width").addEventListener("change", this._setStrokeWidth.bind(this));
     document.querySelector("#color").addEventListener("change", this._setColor.bind(this));
+    document.querySelector("#brush-mode").addEventListener("change", this._setBrushMode.bind(this));
 
     document.querySelector("#add-line").addEventListener("click", this._addLineToCanvas.bind(this));
     document.querySelector("#add-ellipse").addEventListener("click", this._addEllipseToCanvas.bind(this));
@@ -114,6 +115,7 @@ Change stroke width for new canvas objects.
 */
 kaj.Menu.prototype._setStrokeWidth = function(e) {
     this._strokeWidth = parseInt(e.target.value);
+    this._myFabric.setBrushModeStrokeWidth(this._strokeWidth);
 }
 
 /*
@@ -122,6 +124,19 @@ Change color for new canvas objects.
 */
 kaj.Menu.prototype._setColor = function(e) {
     this._color = e.target.value;
+    this._myFabric.setBrushModeColor(this._color);
+}
+
+/*
+Set brush mode.
+@param e - event
+*/
+kaj.Menu.prototype._setBrushMode = function(e) {
+    if (e.target.checked) {
+        this._myFabric.enterBrushMode(this._strokeWidth, this._color);
+    } else {
+        this._myFabric.leaveBrushMode();
+    }
 }
 
 /*

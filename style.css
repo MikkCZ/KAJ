@@ -124,7 +124,7 @@ header #langs a img {
     display: none;
 }
 
-#menu input[type="number"], #menu input[type="color"] {
+#menu input[type="number"], #menu input[type="color"], #menu input[type="checkbox"] {
     position: absolute;
     right: 0;
     max-width: 3em;

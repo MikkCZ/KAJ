@@ -83,6 +83,40 @@ kaj.MyFabric.prototype.deleteSelected = function() {
 }
 
 /*
+Set brush mode stroke width.
+@param strokeWidth - stroke width to set
+*/
+kaj.MyFabric.prototype.setBrushModeStrokeWidth = function(strokeWidth) {
+    this._canvas.freeDrawingBrush.width = strokeWidth;
+}
+
+/*
+Set brush mode color.
+@param color - color to set
+*/
+kaj.MyFabric.prototype.setBrushModeColor = function(color) {
+    this._canvas.freeDrawingBrush.color = color;
+}
+
+/*
+Enter brush mode.
+@param strokeWidth - stroke width to set
+@param color - color to set
+*/
+kaj.MyFabric.prototype.enterBrushMode = function(strokeWidth, color) {
+    this.setBrushModeStrokeWidth(strokeWidth);
+    this.setBrushModeColor(color);
+    this._canvas.isDrawingMode = true;
+}
+
+/*
+Leave brush mode.
+*/
+kaj.MyFabric.prototype.leaveBrushMode = function() {
+    this._canvas.isDrawingMode = false;
+}
+
+/*
 Change canvas background color.
 @param color - new background color
 */

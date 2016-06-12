@@ -1,5 +1,6 @@
 <menu "Menu">
 <color "Barva">
+<brush_mode "Štětec">
 <stroke_width "Čára">
 <background "Pozadí">
 <background_image "Nahrát pozadí">

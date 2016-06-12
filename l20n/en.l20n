@@ -1,5 +1,6 @@
 <menu "Menu">
 <color "Color">
+<brush_mode "Brush mode">
 <stroke_width "Stroke width">
 <background "Background">
 <background_image "Background image">
