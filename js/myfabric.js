@@ -288,6 +288,7 @@ kaj.MyFabric.prototype.getCroppedDataURL = function() {
     var tmpCanvas = new fabric.Canvas();
     tmpCanvas.setHeight(this._canvas.getHeight());
     tmpCanvas.setWidth(this._canvas.getWidth());
+    tmpCanvas.setBackgroundColor(this._canvas.backgroundColor);
 
     var g = new fabric.Group();
     for (var i = 0; i<this._canvas.getObjects().length; i++) {
