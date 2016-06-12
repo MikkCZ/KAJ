@@ -1,4 +1,5 @@
 <menu "Menu">
+<color "Barva">
 <background "Pozadí">
 <background_image "Nahrát pozadí">
 <line "Čára">

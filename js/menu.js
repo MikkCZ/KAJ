@@ -19,7 +19,9 @@ kaj.Menu = function(myFabric, menuLink, menu) {
     this._openedWithClick = false;
     this._openedWithHover = false;
     
-    document.querySelector("#background-image").addEventListener("change", this._loadBackgroundImage.bind(this));
+    document.querySelector("#color").addEventListener("change", this._setColor.bind(this));
+    document.querySelector("#background").addEventListener("change", this._setBackgroundColor.bind(this));
+    //document.querySelector("#background-image").addEventListener("change", this._loadBackgroundImage.bind(this));
     document.querySelector("#add-image").addEventListener("change", this._addImageToCanvas.bind(this));
     document.querySelector("#add-text").addEventListener("click", this._addTextToCanvas.bind(this));
     document.querySelector("#save").addEventListener("click", this._saveToFile.bind(this));
@@ -69,6 +71,14 @@ kaj.Menu.prototype.toggleNav = function(e) {
             this._openNav(e);
         }
     }
+}
+
+kaj.Menu.prototype._setColor = function(e) {
+    this._myFabric.setColor(e.target.value);
+}
+
+kaj.Menu.prototype._setBackgroundColor = function(e) {
+    this._myFabric.setBackgroundColor(e.target.value);
 }
 
 /*

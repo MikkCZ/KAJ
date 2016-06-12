@@ -27,11 +27,18 @@
     </header>
     <nav id="menu">
         <ul>
-            <li data-l10n-id="background">Background</li>
             <li>
+                <label for="color" data-l10n-id="color">Color</label>
+                <input type="color" id="color" value="#000000" defaultvalue="#000000">
+            </li>
+            <li>
+                <label for="background" data-l10n-id="background">Background</label>
+                <input type="color" id="background" value="#ffffff" defaultvalue="#ffffff">
+            </li>
+            <!--<li>
                 <label for="background-image" data-l10n-id="background_image">Background image</label>
                 <input type="file" id="background-image" accept="image/*" multiple="multiple">
-            </li>
+            </li>-->
         </ul>
         <ul>
             <li data-l10n-id="line">Line</li>

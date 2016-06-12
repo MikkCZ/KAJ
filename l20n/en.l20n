@@ -1,4 +1,5 @@
 <menu "Menu">
+<color "Color">
 <background "Background">
 <background_image "Background image">
 <line "Line">

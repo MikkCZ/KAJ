@@ -8,14 +8,18 @@ MyFabric object constructor
 */
 kaj.MyFabric = function(id) {
     this._canvas = new fabric.Canvas(id);
+    this._canvas.setBackgroundColor("transparent");
     this._main = document.querySelector("main");
-    this._resizeCanvas();
+    this._color = "#000000";
     window.addEventListener("resize", this._resizeCanvas.bind(this), false);
     window.addEventListener("keyup", this._keyup.bind(this));
+    this._resizeCanvas();
 }
 
 kaj.MyFabric.prototype.addText = function(text) {
-    this._canvas.add(new fabric.IText(text));
+    var iText = new fabric.IText(text);
+    iText.setColor(this._color);
+    this._canvas.add(iText);
 }
 
 /*
@@ -39,6 +43,15 @@ kaj.MyFabric.prototype._keyup = function(e) {
             this._deleteSelected();
             break;
     }
+}
+
+kaj.MyFabric.prototype.setColor = function(color) {
+    this._color = color;
+}
+
+kaj.MyFabric.prototype.setBackgroundColor = function(color) {
+    this._canvas.setBackgroundColor(color);
+    this._canvas.renderAll();
 }
 
 /*
