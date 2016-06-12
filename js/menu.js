@@ -20,6 +20,7 @@ kaj.Menu = function(myFabric, menuLink, menu) {
     this._openedWithHover = false;
     
     document.querySelector("#color").addEventListener("change", this._setColor.bind(this));
+    document.querySelector("#stroke-width").addEventListener("change", this._setStrokeWidth.bind(this));
     document.querySelector("#background").addEventListener("change", this._setBackgroundColor.bind(this));
     //document.querySelector("#background-image").addEventListener("change", this._loadBackgroundImage.bind(this));
     document.querySelector("#add-image").addEventListener("change", this._addImageToCanvas.bind(this));
@@ -80,6 +81,10 @@ kaj.Menu.prototype.toggleNav = function(e) {
 
 kaj.Menu.prototype._setColor = function(e) {
     this._myFabric.setColor(e.target.value);
+}
+
+kaj.Menu.prototype._setStrokeWidth = function(e) {
+    this._myFabric.setStrokeWidth(parseInt(e.target.value));
 }
 
 kaj.Menu.prototype._setBackgroundColor = function(e) {

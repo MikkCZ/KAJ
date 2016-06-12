@@ -11,6 +11,7 @@ kaj.MyFabric = function(id) {
     this._canvas.setBackgroundColor("transparent");
     this._main = document.querySelector("main");
     this._color = "#000000";
+    this._strokeWidth = 10;
     window.addEventListener("resize", this._resizeCanvas.bind(this), false);
     window.addEventListener("keyup", this._keyup.bind(this));
     this._resizeCanvas();
@@ -44,7 +45,7 @@ kaj.MyFabric.prototype.addArrow = function() {
             top: 50,
             stroke: this._color,
             originY: "center",
-            strokeWidth: 10
+            strokeWidth: this._strokeWidth
         }
     );
     var triangle = new fabric.Triangle(
@@ -72,7 +73,7 @@ kaj.MyFabric.prototype.addRectangle = function() {
             height: 100,
             fill: "transparent",
             stroke: this._color,
-            strokeWidth: 5
+            strokeWidth: this._strokeWidth
         }
     );
     this._canvas.add(rect);
@@ -87,7 +88,7 @@ kaj.MyFabric.prototype.addEllipse = function() {
             ry: 100,
             fill: "transparent",
             stroke: this._color,
-            strokeWidth: 5
+            strokeWidth: this._strokeWidth
         }
     );
     this._canvas.add(ellipse);
@@ -118,6 +119,10 @@ kaj.MyFabric.prototype._keyup = function(e) {
 
 kaj.MyFabric.prototype.setColor = function(color) {
     this._color = color;
+}
+
+kaj.MyFabric.prototype.setStrokeWidth = function(width) {
+    this._strokeWidth = width;
 }
 
 kaj.MyFabric.prototype.setBackgroundColor = function(color) {
