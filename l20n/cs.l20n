@@ -1,5 +1,6 @@
 <menu "Menu">
 <color "Barva">
+<stroke_width "Čára">
 <background "Pozadí">
 <background_image "Nahrát pozadí">
 <line "Čára">
@@ -11,3 +12,4 @@
 <crop "Ořez">
 <save "Uložit">
 <save_cropped "Uložit aut. ořez">
+<save_svg "Uložit jako SVG">
