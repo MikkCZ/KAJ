@@ -28,6 +28,12 @@
     <nav id="menu">
         <ul>
             <li>
+                <label for="background" data-l10n-id="background">Background</label>
+                <input type="color" id="background" value="#ffffff" defaultvalue="#ffffff">
+            </li>
+        </ul>
+        <ul>
+            <li>
                 <label for="stroke-width" data-l10n-id="stroke_width">Stroke width</label>
                 <input type="number" id="stroke-width" min="1" value="10">
             </li>
@@ -35,21 +41,11 @@
                 <label for="color" data-l10n-id="color">Color</label>
                 <input type="color" id="color" value="#000000" defaultvalue="#000000">
             </li>
-            <li>
-                <label for="background" data-l10n-id="background">Background</label>
-                <input type="color" id="background" value="#ffffff" defaultvalue="#ffffff">
-            </li>
-            <!--<li>
-                <label for="background-image" data-l10n-id="background_image">Background image</label>
-                <input type="file" id="background-image" accept="image/*" multiple="multiple">
-            </li>-->
-        </ul>
-        <ul>
-            <li id="add-line" data-l10n-id="line">Line</li>
-            <li id="add-arrow" data-l10n-id="arrow">Arrow</li>
-            <li id="add-text" data-l10n-id="text">Text</li>
-            <li id="add-rect" data-l10n-id="rectangle">Rectangle</li>
-            <li id="add-ellipse" data-l10n-id="ellipse">Ellipse</li>
+            <li><a id="add-line" data-l10n-id="line">Line</a></li>
+            <li><a id="add-ellipse" data-l10n-id="ellipse">Ellipse</a></li>
+            <li><a id="add-rect" data-l10n-id="rectangle">Rectangle</a></li>
+            <li><a id="add-arrow" data-l10n-id="arrow">Arrow</a></li>
+            <li><a id="add-text" data-l10n-id="text">Text</a></li>
             <li>
                 <label for="add-image" data-l10n-id="add_image">Add image</label>
                 <input type="file" id="add-image" accept="image/*" multiple="multiple">

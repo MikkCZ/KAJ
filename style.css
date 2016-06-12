@@ -72,7 +72,7 @@ header #local {
     -webkit-transition: all .5s;
 }
 
-#menu-link, #menu ul * {
+#menu-link, #menu a, #menu label, #menu input, #menu button {
     cursor: pointer;
 }
 
@@ -117,8 +117,35 @@ header #local {
     border-bottom: solid lightgrey 1px;
 }
 
+#menu li {
+    line-height: 1.6em;
+    position: relative;
+}
+
 #menu input[type="file"] {
     display: none;
+}
+
+#menu input[type="number"] {
+    position: absolute;
+    right: 0;
+    max-width: 3em;
+    max-height: 1.3em;
+    padding: 0;
+}
+
+#menu input[type="color"] {
+    position: absolute;
+    right: 0;
+    max-width: 3em;
+    max-height: 1.5em;
+    padding: 0;
+    margin: 0;
+    float: right;
+}
+
+#menu button {
+    width: 100%;
 }
 
 /* Main space for editor */
