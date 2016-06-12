@@ -3,7 +3,7 @@ if (typeof kaj === "undefined") {
 }
 
 /*
-Menu object constructor (DOM is already in HTML)
+Menu object for handling menu click events (DOM is already in HTML).
 @param myFabric - MyFabric instance
 @param menuLink - menu link selector
 @param menu - menu selector
@@ -23,6 +23,9 @@ kaj.Menu = function(myFabric, menuLink, menu) {
     this._addMenuListeners();
 }
 
+/*
+Registers listeners for the menu elements.
+*/
 kaj.Menu.prototype._addMenuListeners = function() {
     document.querySelector("#background").addEventListener("change", this._setBackgroundColor.bind(this));
 
@@ -42,7 +45,7 @@ kaj.Menu.prototype._addMenuListeners = function() {
 }
 
 /*
-Open navigation menu
+Open navigation menu.
 @param e - event
 */
 kaj.Menu.prototype._openNav = function(e) {
@@ -56,7 +59,7 @@ kaj.Menu.prototype._openNav = function(e) {
 }
 
 /*
-Close navigation menu
+Close navigation menu.
 */
 kaj.Menu.prototype._closeNav = function() {
     this._openedWithClick = false;
@@ -66,7 +69,7 @@ kaj.Menu.prototype._closeNav = function() {
 }
 
 /*
-Open/close navigation menu
+Open/close navigation menu.
 @param e - event
 */
 kaj.Menu.prototype._toggleNav = function(e) {
@@ -85,12 +88,16 @@ kaj.Menu.prototype._toggleNav = function(e) {
     }
 }
 
+/*
+Change canvas background color.
+@param e - event
+*/
 kaj.Menu.prototype._setBackgroundColor = function(e) {
     this._myFabric.setBackgroundColor(e.target.value);
 }
 
 /*
-Load image on canvas background
+Load image as canvas background.
 @param e - event
 */
 kaj.Menu.prototype._loadBackgroundImage = function(e) {
@@ -101,66 +108,97 @@ kaj.Menu.prototype._loadBackgroundImage = function(e) {
     fr.readAsDataURL(e.target.files[0]);
 }
 
+/*
+Change stroke width for new canvas objects.
+@param e - event
+*/
 kaj.Menu.prototype._setStrokeWidth = function(e) {
     this._strokeWidth = parseInt(e.target.value);
 }
 
+/*
+Change color for new canvas objects.
+@param e - event
+*/
 kaj.Menu.prototype._setColor = function(e) {
     this._color = e.target.value;
 }
 
+/*
+Add new line to canvas.
+*/
 kaj.Menu.prototype._addLineToCanvas = function() {
     this._myFabric.addLine(this._color);
 }
 
+/*
+Add new ellipse to canvas.
+*/
 kaj.Menu.prototype._addEllipseToCanvas = function() {
     this._myFabric.addEllipse(this._strokeWidth, this._color);
 }
 
+/*
+Add new rectangle to canvas.
+*/
 kaj.Menu.prototype._addRectangleToCanvas = function() {
     this._myFabric.addRectangle(this._strokeWidth, this._color);
 }
 
+/*
+Add new arrow to canvas.
+*/
 kaj.Menu.prototype._addArrowToCanvas = function() {
     this._myFabric.addArrow(this._strokeWidth, this._color);
 }
 
+/*
+Add new text to canvas.
+*/
 kaj.Menu.prototype._addTextToCanvas = function() {
     this._myFabric.addText("Click to edit", this._color);
 }
 
 /*
-Load images and add it to canvas
+Add images to canvas.
 @param e - event
 */
 kaj.Menu.prototype._addImageToCanvas = function(e) {
     this._myFabric.addImagesToCanvas(e.target.files);
 }
 
-kaj.Menu.prototype._offerSave = function(download, data) {
+/*
+Open save image dialog.
+@param filename - name of the file to download
+@param dataURL - image data URL
+*/
+kaj.Menu.prototype._offerSave = function(filename, dataURL) {
     var a = document.createElement("a");
-    a.setAttribute("download", download);
-    a.setAttribute("href", data);
+    a.setAttribute("download", filename);
+    a.setAttribute("href", dataURL);
     this._menu.appendChild(a);
     a.click();
     this._menu.removeChild(a);
 }
 
 /*
-Save canvas content to file
+Save canvas content as PNG.
 */
 kaj.Menu.prototype._saveToFile = function() {
     this._myFabric.renderAll();
-    this._offerSave("KAJ-stankmic.png", document.querySelector("#fabric").toDataURL());
+    this._offerSave("KAJ-stankmic.png", this._myFabric.getDataURL());
 }
 
 /*
-Save canvas content to file
+Save cropped canvas content as PNG.
 */
 kaj.Menu.prototype._saveCroppedToFile = function() {
     this._offerSave("KAJ-stankmic.png", this._myFabric.getCroppedDataURL());
 }
 
+/*
+Save canvas content as SVG.
+*/
 kaj.Menu.prototype._saveAsSVG = function() {
     var base64SVG = window.btoa(this._myFabric.toSVG());
     this._offerSave("KAJ-stankmic.svg", "data:image/svg+xml;base64,"+base64SVG);

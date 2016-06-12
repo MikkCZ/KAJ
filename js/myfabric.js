@@ -3,8 +3,9 @@ if (typeof kaj === "undefined") {
 }
 
 /*
-MyFabric object constructor
+MyFabric object for canvas manipulation.
 @param id - canvas id
+@param menu - menu selector
 */
 kaj.MyFabric = function(id, main) {
     this._canvas = new fabric.Canvas(id);
@@ -16,7 +17,7 @@ kaj.MyFabric = function(id, main) {
 }
 
 /*
-Resize canvas on full <main> size
+Resize canvas on full <main> size.
 */
 kaj.MyFabric.prototype._resizeCanvas = function() {
     this._canvas.setHeight(this._main.offsetHeight);
@@ -24,45 +25,75 @@ kaj.MyFabric.prototype._resizeCanvas = function() {
     this._canvas.renderAll();
 }
 
+/*
+Re-render the canvas.
+*/
 kaj.MyFabric.prototype.renderAll = function() {
     this._canvas.renderAll();
 }
 
+/*
+Get canvas content as SVG.
+@return canvas content as SVG XML
+*/
 kaj.MyFabric.prototype.toSVG = function() {
     return this._canvas.toSVG();
 }
 
+/*
+Serialize canvas to JSON.
+@return JSON serialization of the canvas content
+*/
 kaj.MyFabric.prototype.toJSON = function() {
     return JSON.stringify(this._canvas);
 }
 
+/*
+Deserialize and load canvas content to JSON. Old content is not preserved.
+@param json - JSON serialization of the canvas content
+@param callback - callback to call after the canvas is loaded
+*/
 kaj.MyFabric.prototype.loadFromJSON = function(json, callback) {
     this._canvas.loadFromJSON(json, callback);
 }
 
+/*
+Add listener to canvas event.
+@param event - event to listen
+@param listener - listnener to add
+*/
 kaj.MyFabric.prototype.addCanvasListener = function(event, listener) {
     this._canvas.on(event, listener);
 }
 
+/*
+Remove listener from canvas event.
+@param event - event to remove from
+@param listener - listnener to remove
+*/
 kaj.MyFabric.prototype.removeCanvasListener = function(event, listener) {
     this._canvas.off(event, listener);
 }
 
 /*
-Delete currently selected object from canvas
+Delete currently selected object from canvas.
 */
 kaj.MyFabric.prototype.deleteSelected = function() {
     this._canvas.getActiveObject().remove();
 }
 
+/*
+Change canvas background color.
+@param color - new background color
+*/
 kaj.MyFabric.prototype.setBackgroundColor = function(color) {
     this._canvas.setBackgroundColor(color);
     this._canvas.renderAll();
 }
 
 /*
-Set canvas background image
-@param url - image url (can be data url)
+Set image as canvas background.
+@param url - image URL (can be data URL)
 */
 kaj.MyFabric.prototype.setBackgroundImage = function(url) {
     fabric.Image.fromURL(url);
@@ -72,6 +103,10 @@ kaj.MyFabric.prototype.setBackgroundImage = function(url) {
     }.bind(this));
 }
 
+/*
+Add new line.
+@param color - line color
+*/
 kaj.MyFabric.prototype.addLine = function(color) {
     var line = new fabric.Line(
         [50, 50, 250, 50],
@@ -85,6 +120,11 @@ kaj.MyFabric.prototype.addLine = function(color) {
     this._canvas.add(line);
 }
 
+/*
+Add new ellipse.
+@param strokeWidth - ellipse stroke width
+@param color - ellipse color
+*/
 kaj.MyFabric.prototype.addEllipse = function(strokeWidth, color) {
     var ellipse = new fabric.Ellipse(
         {
@@ -100,6 +140,11 @@ kaj.MyFabric.prototype.addEllipse = function(strokeWidth, color) {
     this._canvas.add(ellipse);
 }
 
+/*
+Add new rectangle.
+@param strokeWidth - rectangle stroke width
+@param color - rectangle color
+*/
 kaj.MyFabric.prototype.addRectangle = function(strokeWidth, color) {
     var rect = new fabric.Rect(
         {
@@ -115,6 +160,11 @@ kaj.MyFabric.prototype.addRectangle = function(strokeWidth, color) {
     this._canvas.add(rect);
 }
 
+/*
+Add new arrow.
+@param strokeWidth - arrow stroke width
+@param color - arrow color
+*/
 kaj.MyFabric.prototype.addArrow = function(strokeWidth, color) {
     var line = new fabric.Line(
         [50, 50, 100, 50],
@@ -143,6 +193,11 @@ kaj.MyFabric.prototype.addArrow = function(strokeWidth, color) {
     this._canvas.add(triangle);
 }
 
+/*
+Add new interactive text.
+@param text - text to show
+@param color - text color
+*/
 kaj.MyFabric.prototype.addText = function(text, color) {
     var iText = new fabric.IText(text);
     iText.setColor(color);
@@ -150,8 +205,8 @@ kaj.MyFabric.prototype.addText = function(text, color) {
 }
 
 /*
-Add image to canvas
-@param url - image url (can be data url)
+Add new image.
+@param url - image URL (can be data URL)
 */
 kaj.MyFabric.prototype._addImage = function(url) {
     fabric.Image.fromURL(url);
@@ -160,6 +215,10 @@ kaj.MyFabric.prototype._addImage = function(url) {
     }.bind(this));
 }
 
+/*
+Add new images.
+@param files - list of files
+*/
 kaj.MyFabric.prototype.addImagesToCanvas = function(files) {
     var callback = function(e) {
         this._addImage(e.target.result);
@@ -176,18 +235,18 @@ kaj.MyFabric.prototype.addImagesToCanvas = function(files) {
 }
 
 /*
-Get current canvas content as data URL
-@return base64 png image from the current canvas content
+Get canvas content as data URL.
+@return png image in base64 data URL format
 */
 kaj.MyFabric.prototype.getDataURL = function() {
     this._canvas.deactivateAll();
     this._canvas.renderAll();
-    return this._canvas.toDataURL();
+    return this._canvas.getElement().toDataURL();
 }
 
 /*
-Get current canvas cropped content as data URL
-@return base64 png image from the current canvas content
+Get cropped canvas content as data URL.
+@return png image in base64 data URL format
 */
 kaj.MyFabric.prototype.getCroppedDataURL = function() {
     var tmpCanvas = new fabric.Canvas();
