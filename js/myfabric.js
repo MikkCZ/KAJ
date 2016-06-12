@@ -136,6 +136,10 @@ kaj.MyFabric.prototype.getCroppedDataURL = function() {
     return dataURL;
 }
 
+kaj.MyFabric.prototype.toSVG = function() {
+    return this._canvas.toSVG();
+}
+
 kaj.MyFabric.prototype.addCanvasListener = function(event, callback) {
     this._canvas.on(event, callback);
 }

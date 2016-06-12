@@ -26,6 +26,7 @@ kaj.Menu = function(myFabric, menuLink, menu) {
     document.querySelector("#add-text").addEventListener("click", this._addTextToCanvas.bind(this));
     document.querySelector("#save").addEventListener("click", this._saveToFile.bind(this));
     document.querySelector("#save-cropped").addEventListener("click", this._saveCroppedToFile.bind(this));
+    document.querySelector("#save-svg").addEventListener("click", this._saveAsSVG.bind(this));
 }
 
 /*
@@ -111,12 +112,7 @@ Save canvas content to file
 */
 kaj.Menu.prototype._saveToFile = function(e) {
     this._myFabric.renderAll();
-    var a = document.createElement("a");
-    a.setAttribute("download", "KAJ-stankmic.png");
-    a.setAttribute("href", document.querySelector("#fabric").toDataURL());
-    this._menu.appendChild(a);
-    a.click();
-    this._menu.removeChild(a);
+    this._offerSave("KAJ-stankmic.png", document.querySelector("#fabric").toDataURL());
 }
 
 /*
@@ -124,9 +120,18 @@ Save canvas content to file
 @param e - event
 */
 kaj.Menu.prototype._saveCroppedToFile = function(e) {
+    this._offerSave("KAJ-stankmic.png", this._myFabric.getCroppedDataURL());
+}
+
+kaj.Menu.prototype._saveAsSVG = function(e) {
+    var base64SVG = window.btoa(this._myFabric.toSVG());
+    this._offerSave("KAJ-stankmic.svg", "data:image/svg+xml;base64,"+base64SVG);
+}
+
+kaj.Menu.prototype._offerSave = function(download, data) {
     var a = document.createElement("a");
-    a.setAttribute("download", "KAJ-stankmic.png");
-    a.setAttribute("href", this._myFabric.getCroppedDataURL());
+    a.setAttribute("download", download);
+    a.setAttribute("href", data);
     this._menu.appendChild(a);
     a.click();
     this._menu.removeChild(a);
