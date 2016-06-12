@@ -63,6 +63,21 @@ kaj.MyFabric.prototype.addArrow = function() {
     this._canvas.add(triangle);
 }
 
+kaj.MyFabric.prototype.addRectangle = function() {
+    var rect = new fabric.Rect(
+        {
+            left: 50,
+            top: 50,
+            width: 150,
+            height: 100,
+            fill: "transparent",
+            stroke: this._color,
+            strokeWidth: 5
+        }
+    );
+    this._canvas.add(rect);
+}
+
 /*
 Resize canvas on full <main> size
 */

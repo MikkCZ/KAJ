@@ -26,6 +26,7 @@ kaj.Menu = function(myFabric, menuLink, menu) {
     document.querySelector("#add-text").addEventListener("click", this._addTextToCanvas.bind(this));
     document.querySelector("#add-line").addEventListener("click", this._addLineToCanvas.bind(this));
     document.querySelector("#add-arrow").addEventListener("click", this._addArrowToCanvas.bind(this));
+    document.querySelector("#add-rect").addEventListener("click", this._addRectangleToCanvas.bind(this));
     document.querySelector("#save").addEventListener("click", this._saveToFile.bind(this));
     document.querySelector("#save-cropped").addEventListener("click", this._saveCroppedToFile.bind(this));
     document.querySelector("#save-svg").addEventListener("click", this._saveAsSVG.bind(this));
@@ -114,6 +115,10 @@ kaj.Menu.prototype._addLineToCanvas = function() {
 
 kaj.Menu.prototype._addArrowToCanvas = function() {
     this._myFabric.addArrow();
+}
+
+kaj.Menu.prototype._addRectangleToCanvas = function() {
+    this._myFabric.addRectangle();
 }
 
 /*
